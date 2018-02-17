@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game Tebak Angka</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styleku.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css">
+	<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.9";
+  		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<div class="sticky-wrapper" id="sticky-wrapper" style="height: 70px;">
+		<div class="navbar navbar-default navbar-static-top yamm sticky" style="width: 100%;position: fixed;">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="" class="navbar-brand">GUESS NUMBER</a>
+				</div>
+
+				<div class="navbar-collapse collapse" style="max-height: 312px;">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#deskripsi">DESCRIPTION</a>
+						</li>
+						<li class="dropdown">
+							<a href="#howto">HOW TO</a>
+						</li>
+						<li class="dropdown">
+							<a href="#play">PLAY</a>
+						</li>
+						<li class="dropdown">
+							<a href="#topscore" onclick="location.reload();">HISTORY TOP SCORE</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section our-team-v-2" id="deskripsi">
+		<div class="section-judul">
+			TENTANG GAME TEBAK ANGKA
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p align="center">
+					Game ini adalah game sederhana yaitu tentang menebak angka random yang diacak oleh sistem. Tersedia 3 Level:
+				</p>
+
+				<p align="center">
+					<b>1. Mudah</b><br>
+					System akan mengacak angka 1-100, diberi kesempatan menebak Unlimited.<br><br>
+
+					<b>2. Medium</b><br>
+					System akan mengacak angka 1-400, diberi kesempatan menebak 20 kali<br><br>
+
+					<b>3. Sulit</b><br>
+					System akan mengacak angka 1-1000, diberi kesempatan menebak 10 kali<br><br>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section our-team-v-2" id="howto" style="margin-top: -20px;">
+		<div class="section-judul">
+			HOW TO PLAY
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p align="center">
+					<b>1. Pilih Level (Mudah/Medium/Sulit)</b><br>
+					<b>2. Mulailah Menebak Angka</b><br>
+					<b>3. Semoga Beruntung</b><br>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section our-team-v-2" style="margin-top: -20px;" id="play">
+		<div class="section-judul">
+			PLAY
+		</div>
+		<div class="row" id="history_top_score">
+			<div class="col-md-4">
+				
+			</div>
+
+			<div class="col-md-4">
+				<h3 id="s_medium"></h3>
+			</div>
+
+			<div class="col-md-4">
+				<h3 id="s_sulit"></h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"><a href="#play"  class="btn border-theme btn-lg center-block" id="mudah" onclick="stmudah();">MUDAH</a></div>
+			<div class="col-md-4"><a href="#play"  class="btn border-theme btn-lg center-block" id="medium" onclick="stmedium()">MEDIUM</a></div>	
+			<div class="col-md-4"><a href="#play"  class="btn border-theme btn-lg center-block" id="sulit" onclick="stsulit()">SULIT</a></div>		
+		</div>
+
+		<div class="row our-team-v-2">
+			<div class="col-md-12">
+				<div class="panel panel-info" id="panel">
+					<div class="our-team-v-2">
+						<h3 id="level" class="text-center" style="margin-top: -30px;""></h3>
+						<input class="form-control" type="text" id="game" style="margin: 0px auto;"><br>
+						<div class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-3">
+								<button  class="btn border-theme center-block btn-lg center-block" style="float: right!important;"
+								onclick="cek();">CEK</button>
+							</div>
+							<div class="col-md-3">
+								<button class="btn border-theme center-block btn-lg center-block" style="float: left!important;" onclick="location.reload()">NEW GAME</button>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+						<p id="angkakecil" class="text-center"></p><br>
+						<p id="angkabesar" class="text-center"></p><br>
+						<p id="hasil" class="text-center"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="our-team-v-2 section" >
+		<div class="section-judul" id="topscore">
+			HISTORY TOP SCORE
+			<div class="row">
+				<div class="col-md-4">
+					<h3>TOPSCORE MUDAH</h3>
+					<h3 id="ts_mudah"></h3>
+				</div>
+
+				<div class="col-md-4">
+					<h3>TOPSCORE MEDIUM</h3>
+					<h3 id="ts_medium"></h3>
+				</div>
+
+				<div class="col-md-4">
+					<h3>TOPSCORE SULIT</h3>
+					<h3 id="ts_sulit"></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="our-team-v-2 section" style="margin-top: 30px;">
+		<div class="section-judul">
+			API MAPS & SHARE
+		</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="section-judul">
+						Beritahu teman anda tentang game ini	
+					</div>
+					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Bagikan</a></div>
+				</div>
+				<div class="col-md-6">
+					<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Universitas%20Amikom%20Yogyakarta&key=AIzaSyArqgpI4MCbDvJ9REyDtMD-vgP2dcLPr9Y" allowfullscreen style="margin: 0 auto;"></iframe>
+				</div>
+			</div>
+	</div>
+
+
+	<div class="our-team-v-2" style="margin-top: 30px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-judul">
+						ABOUT US
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-3 text-center">
+					<div class="person-v2">
+						<img src="assets/img/beta.jpg" width="263" height="263" class="img-responsive">
+						<div class="person-desc-v2">
+							<h4>BETA PRIYOKO</h4>
+							<em>Game System Engineer</em>
+							<ul class="list-inline" style="margin-top: 8px;">
+								<li>
+									<a href="#"><i class="fa fa-facebook fa-small"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 text-center">
+					<div class="person-v2">
+						<img src="assets/img/siti.jpg" width="263" height="263" class="img-responsive">
+						<div class="person-desc-v2">
+							<h4>SITI MAULIDAH</h4>
+							<em>Support & Documentation</em>
+							<ul class="list-inline" style="margin-top: 8px;">
+								<li>
+									<a href="#"><i class="fa fa-facebook fa-small"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 text-center">
+					<div class="person-v2">
+						<img src="assets/img/wahid.jpg" width="263" height="263" class="img-responsive">
+						<div class="person-desc-v2">
+							<h4>MUHAMMAD NURWAHID</h4>
+							<em>Design</em>
+							<ul class="list-inline" style="margin-top: 8px;">
+								<li>
+									<a href="#"><i class="fa fa-facebook fa-small"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 text-center">
+					<div class="person-v2">
+						<img src="assets/img/ilham.jpg" width="263" height="263" class="img-responsive">
+						<div class="person-desc-v2">
+							<h4>ACHMAD ILHAM M</h4>
+							<em>Design & Programming</em>
+							<ul class="list-inline" style="margin-top: 8px;">
+								<li>
+									<a href="#"><i class="fa fa-facebook fa-small"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/bootstrap.js" type="text/javascript"></script>
+	<script src="assets/js/game.js" type="text/javascript"></script>
+</body>
+</html>
